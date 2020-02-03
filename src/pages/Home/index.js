@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
+import { connect, useDispatch } from 'react-redux';
 import api from '../../services/api';
 import { List } from './styles';
 
 import currencyFormat from '../../util/formatCurrency';
 
-export default function Home() {
+function Home() {
+  const dispach = useDispatch();
   const [product, SetProduct] = useState([]);
 
   useEffect(() => {
@@ -38,3 +40,5 @@ export default function Home() {
     </List>
   );
 }
+
+export default connect(Home);
