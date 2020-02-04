@@ -6,7 +6,7 @@ const api = axios.create({
 
 /* rodar json-server
 
-json-server --watch -p 3333 server.json
+json-server -p 3333 server.json
 */
 
 export default api;
