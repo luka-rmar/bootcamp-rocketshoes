@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
+import Image from 'react-shimmer';
 
 import * as ActionsCart from '../../store/modules/cart/action';
 import api from '../../services/api';
@@ -39,7 +40,15 @@ export default function Home() {
     <List>
       {product.map(item => (
         <li key={item.id}>
-          <img src={item.image} alt={item.title} />
+          <Image
+            src={item.image}
+            width={250}
+            height={250}
+            style={{ objectFit: 'cover' }}
+            delay={25}
+            duration={0.9}
+            alt={item.title}
+          />
           <strong>{item.title}</strong>
           <span>{item.formatedPrice}</span>
           <button type="button" onClick={() => handleItem(item.id)}>

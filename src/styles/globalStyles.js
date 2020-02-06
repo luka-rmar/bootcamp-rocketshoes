@@ -28,7 +28,14 @@ export default createGlobalStyle`
     margin: 0 auto;
     /* 0 top, 20 left and rigth, 50 botton */
     padding: 0 20px 50px;
+
+    @media (max-width: 930px) {
+      max-width: 720px;
   }
+  @media (max-width: 635px) {
+      width: 500px;
+  }
+
 
   button {
     cursor: pointer;

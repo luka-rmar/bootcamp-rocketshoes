@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import currencyFormat from '../../util/formatCurrency';
 import * as ActionsCart from '../../store/modules/cart/action';
 import { Container, TableItens, Total } from './styles';
+import CartEmpty from '../../components/CartEmpty';
 
 export default function Cart() {
   const itens = useSelector(state =>
@@ -37,7 +38,7 @@ export default function Cart() {
     dispach(ActionsCart.removeItem(id));
   }
 
-  return (
+  return itens.length !== 0 ? (
     <Container>
       <TableItens>
         <thead>
@@ -81,6 +82,7 @@ export default function Cart() {
           ))}
         </tbody>
       </TableItens>
+
       <footer>
         <button type="button">Finalizar Pedido</button>
         <Total>
@@ -89,5 +91,7 @@ export default function Cart() {
         </Total>
       </footer>
     </Container>
+  ) : (
+    <CartEmpty />
   );
 }

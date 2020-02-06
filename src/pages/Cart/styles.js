@@ -27,10 +27,15 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media (max-width: 635px) {
+    padding: 20px;
+  }
 `;
 
 export const TableItens = styled.table`
   width: 100%;
+  border-collapse: collapse;
 
   thead th {
     color: #999;
@@ -41,7 +46,6 @@ export const TableItens = styled.table`
   tbody td {
     padding: 12px;
     border-bottom: 1px solid #eee;
-    border-collapse: collapse;
   }
 
   img {
@@ -77,6 +81,15 @@ export const TableItens = styled.table`
     background: none;
     border: 0;
     padding: 6px;
+  }
+  @media (max-width: 635px) {
+    thead::nth-child(1) {
+      display: none;
+    }
+
+    img {
+      display: none;
+    }
   }
 `;
 

@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
+
 import { darken } from 'polished';
 
 export const List = styled.ul`
@@ -17,7 +18,6 @@ export const List = styled.ul`
 
     img {
       align-self: center;
-      max-width: 250px;
     }
     /*opreaodr (>) para fazer referência ao strong
     de dentro do elemento se mão irá referenciar
@@ -66,6 +66,19 @@ export const List = styled.ul`
         text-align: center;
         font-weight: bold;
       }
+    }
+  }
+
+  @media (max-width: 930px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 652px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    li {
+      width: 400px;
+      margin-bottom: 20px;
     }
   }
 `;
