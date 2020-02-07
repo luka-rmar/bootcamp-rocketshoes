@@ -11,6 +11,7 @@ export default function cart(state = [], action) {
       return produce(state, draft => {
         const indexItem = draft.findIndex(i => i.id === action.id);
         if (indexItem >= 0) {
+          draft[indexItem].loading = true;
           draft[indexItem].amount = Number(action.amount);
         }
       });

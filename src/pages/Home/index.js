@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'react-shimmer';
+import Loader from 'react-loader-spinner';
 
 import * as ActionsCart from '../../store/modules/cart/action';
+import * as ActionsProducts from '../../store/modules/products/actions';
 import api from '../../services/api';
 import { List } from './styles';
 
 import currencyFormat from '../../util/formatCurrency';
 
 export default function Home() {
-  const [product, SetProduct] = useState([]);
   const dispach = useDispatch();
 
+  const product = useSelector(state => state.products);
+  console.log(product);
   const amount = useSelector(state =>
     state.cart.reduce((sumAmount, item) => {
       sumAmount[item.id] = item.amount;
@@ -23,11 +26,12 @@ export default function Home() {
   useEffect(() => {
     async function loadDate() {
       const response = await api.get('products');
-      const date = response.data.map(value => ({
+      const data = response.data.map(value => ({
         ...value,
         formatedPrice: currencyFormat(value.price),
+        loading: false,
       }));
-      SetProduct(date);
+      dispach(ActionsProducts.getProducts(data));
     }
     loadDate();
   }, []);
@@ -49,6 +53,7 @@ export default function Home() {
             duration={0.9}
             alt={item.title}
           />
+
           <strong>{item.title}</strong>
           <span>{item.formatedPrice}</span>
           <button type="button" onClick={() => handleItem(item.id)}>
@@ -56,7 +61,13 @@ export default function Home() {
               <MdAddShoppingCart size={16} color="#fff" />
               {amount[item.id] || 0}
             </div>
-            <span>ADICIONAR AO CARRINHO</span>
+            <span>
+              {item.loading ? (
+                <Loader type="ThreeDots" color="#fff" width={50} height={40} />
+              ) : (
+                'ADICIONAR AO CARRINHO'
+              )}
+            </span>
           </button>
         </li>
       ))}

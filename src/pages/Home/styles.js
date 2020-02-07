@@ -65,6 +65,17 @@ export const List = styled.ul`
         flex: 1;
         text-align: center;
         font-weight: bold;
+
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          background: #7159c1;
+          &:hover {
+            background: ${darken(0.03, '#7159c1')};
+          }
+        }
       }
     }
   }

@@ -5,8 +5,11 @@ import currencyFormat from '../../../util/formatCurrency';
 
 import api from '../../../services/api';
 import { addCartSuccess, updateAmountSuccess } from './action';
+import { setStatusInLoading } from '../products/actions';
 
 function* addCart({ id }) {
+  yield put(setStatusInLoading(id, true));
+
   const itemExists = yield select(state =>
     state.cart.find(item => item.id === id)
   );
@@ -19,6 +22,7 @@ function* addCart({ id }) {
   const amount = valueAmount + 1;
 
   if (amount > amountStock) {
+    yield put(setStatusInLoading(id, false));
     toast.error('Quantidade acima do limite em estoque');
     return;
   }
@@ -36,6 +40,8 @@ function* addCart({ id }) {
 
     yield put(addCartSuccess(data));
   }
+
+  yield put(setStatusInLoading(id, false));
 }
 
 function* updateAmount({ id, amount }) {
