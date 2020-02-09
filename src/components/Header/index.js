@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MdShoppingBasket } from 'react-icons/md';
+import { MdShoppingCart } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 
 import { Container, Cart } from './styles';
@@ -19,7 +19,7 @@ export default function Header() {
           <strong>Meu carrinho</strong>
           <span> {cartSize} Intens</span>
         </div>
-        <MdShoppingBasket size={36} color="#fff" />
+        <MdShoppingCart size={36} color="#fff" />
       </Cart>
     </Container>
   );
