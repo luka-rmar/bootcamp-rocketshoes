@@ -12,7 +12,8 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-artifacts:
-  files:
-    - build/**
-  base-directory: build
+      - aww s3 cp build s3://rocketshoes.app --recursive --acl public-read
+# artifacts:
+#   files:
+#     - build/**
+#   base-directory: build
